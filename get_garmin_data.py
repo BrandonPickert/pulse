@@ -21,7 +21,7 @@ PASSWORD = secrets["garmin"]["password"]  # ← Your real Garmin password
 DAYS_BACK = 180
 
 # Output file for your Replit app
-OUTPUT_FILE = "server/data.json"
+OUTPUT_FILE = "data/workouts.json"
 
 
 def login():
