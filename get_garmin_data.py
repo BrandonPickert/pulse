@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""
-get_garmin_data_fixed.py
-Fixed for 2025: Uses email/password to start OAuth (browser opens once),
-then caches tokens for 1 year. No more passwords!
-"""
 
 import json
 import os
 from datetime import datetime, timedelta
 from garminconnect import Garmin, GarminConnectAuthenticationError
+import secrets
 
 # ================================================================
 # EDIT THESE TWO LINES ONLY THE FIRST TIME
 # ================================================================
-EMAIL = "Your_Email@gmail.com"  # ← Your real Garmin email
-PASSWORD = "***REMOVED***"  # ← Your real Garmin password
+SECRETS_PATH = "secrets.json"
+with open(SECRETS_PATH) as f:
+    secrets = json.load(f)
+
+EMAIL = secrets["garmin"]["email"]  # ← Your real Garmin email
+PASSWORD = secrets["garmin"]["password"]  # ← Your real Garmin password
 # ================================================================
 
 # How many days back to fetch (180 = last 6 months, None = all time)

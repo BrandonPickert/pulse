@@ -29,3 +29,6 @@ uv.lock
 
 # Secrets
 secrets.json
+
+# Junk
+scratch.py
