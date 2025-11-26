@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="app">
+    <header class="header">
+        <h1>Pulse <span class="fire">🔥{{ stats.streak }}</span></h1>
+        <p>Your workout streak is <strong>{{ stats.streak }} day{{ 's' if stats.streak != 1 else '' }}</strong> strong!</p>
+        <a href="{{ url_for('connect_garmin') }}" class="btn-garmin">Sync Garmin</a>
+    </header>
+
+    <div class="streak-display">
+        <div class="streak-fire">{% for i in range(stats.streak) %}🔥{% endfor %}</div>
+        <p>{% if stats.streak == 0 %}No streak yet — start today!{% else %}Keep the fire alive!{% endif %}</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">{{ stats.totalWorkouts }}</div>
+            <div class="stat-label">Total Workouts</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ stats.totalMinutes }}</div>
+            <div class="stat-label">Total Minutes</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ stats.thisWeek }}</div>
+            <div class="stat-label">This Week</div>
+        </div>
+    </div>
+
+    <div class="workouts-list">
+        <h2>Recent Workouts</h2>
+        {% if workouts %}
+            {% for w in workouts %}
+            <div class="workout-card">
+                <div class="workout-type-icon">
+                    {% if w.type.lower() == "running" %}🏃{% elif w.type.lower() == "cycling" %}🚴{% elif w.type.lower() == "swimming" %}🏊{% else %}💪{% endif %}
+                </div>
+                <div class="workout-info">
+                    <strong>{{ w.name or w.type }}</strong>
+                    <div class="details">
+                        <span>{{ (w.duration // 60) }} min</span>
+                        • <span>{{ w.createdAt[:10] }}</span>
+                        {% if w.calories %}• {{ w.calories }} cal{% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty-state">No workouts yet. Connect Garmin to begin!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="connect-page">
+    <h1>Connect Garmin to Pulse</h1>
+    <p>We'll pull your workouts automatically and build your streak.</p>
+    <form method="POST" class="garmin-form">
+        <input type="email" name="email" placeholder="Garmin email" required>
+        <input type="password" name="password" placeholder="Garmin password" required>
+        <button type="submit" class="btn-primary">Sync Garmin Workouts</button>
+    </form>
+    <small>We do NOT store your password. It's used only once to authenticate with Garmin.</small>
+</div>
+{% endblock %}
