@@ -1,6 +1,28 @@
-node_modules
-dist
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pythonlibs/
+venv/
+ENV/
+.venv/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
 .DS_Store
 *.log
+.idea/
+.vscode/
+
+# Data
 data/*.json
 !data/.gitkeep
+
+# Replit
+.uv/
+uv.lock
